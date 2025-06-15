@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaipur on Wheels - A Moving Culinary Experience Through the Pink City</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --royal-gold: #D4AF37;
+            --heritage-pink: #FF6B9D;
+            --rich-cream: #F5E6D3;
+            --deep-maroon: #8B0000;
+            --luxury-black: #1A1A1A;
+            --soft-white: #FEFEFE;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--luxury-black);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--royal-gold);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--soft-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: var(--royal-gold);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--royal-gold);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--heritage-pink) 0%, var(--deep-maroon) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--soft-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="heritage" patternUnits="userSpaceOnUse" width="60" height="60"><circle cx="30" cy="30" r="2" fill="%23D4AF37" opacity="0.3"/></pattern></defs><rect width="1200" height="600" fill="url(%23heritage)"/></svg>') center/cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--rich-cream);
+            font-style: italic;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--royal-gold);
+            color: var(--luxury-black);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--soft-white);
+            border: 2px solid var(--royal-gold);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Bus Animation */
+        .bus-animation {
+            position: absolute;
+            bottom: 10%;
+            right: -200px;
+            animation: busMove 20s linear infinite;
+        }
+
+        .bus {
+            width: 150px;
+            height: 80px;
+            background: var(--royal-gold);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .bus::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: var(--heritage-pink);
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--deep-maroon);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--royal-gold);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--rich-cream);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: var(--soft-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--royal-gold);
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--soft-white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--royal-gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Menu Section */
+        .menu {
+            background: var(--luxury-black);
+            color: var(--soft-white);
+        }
+
+        .menu-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .menu-category {
+            background: linear-gradient(135deg, var(--deep-maroon), var(--heritage-pink));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .menu-category:hover::before {
+            left: 100%;
+        }
+
+        .menu-category:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--royal-gold);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--soft-white);
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 15px;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--deep-maroon);
+        }
+
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background: var(--rich-cream);
+            transform: translateX(10px);
+        }
+
+        .item-info h4 {
+            color: var(--deep-maroon);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: var(--royal-gold);
+            font-size: 1.2rem;
+        }
+
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--royal-gold);
+            background: var(--soft-white);
+            color: var(--royal-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background: var(--royal-gold);
+            color: var(--soft-white);
+        }
+
+        /* Booking Section */
+        .booking {
+            background: var(--rich-cream);
+        }
+
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--soft-white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--deep-maroon);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--royal-gold);
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, var(--heritage-pink), var(--royal-gold));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            font-size: 1.2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Route Map */
+        .route-map {
+            background: var(--luxury-black);
+            color: var(--soft-white);
+            text-align: center;
+            padding: 3rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+        }
+
+        .route-points {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .route-point {
+            background: var(--royal-gold);
+            color: var(--luxury-black);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--deep-maroon);
+            color: var(--soft-white);
+        }
+
+        .contact-info {
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-details {
+            margin: 2rem 0;
+        }
+
+        .contact-details h3 {
+            color: var(--royal-gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--luxury-black);
+            color: var(--soft-white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes busMove {
+            0% { right: -200px; }
+            100% { right: 100%; }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .route-points {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 1rem;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--rich-cream);
+            z-index: 999;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: var(--royal-gold);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    
+body {
+    background: url('assets_task_01jw84vnqdfc9an29negh8864b_1748325307_img_1.webp') center center / cover no-repeat fixed;
+    background-color: #000;
+}
+</style>
+</head>
+<body>
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Jaipur on Wheels</a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#booking" class="nav-link">Book Now</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Jaipur on Wheels</h1>
+            <p class="tagline">A Moving Culinary Experience Through the Pink City</p>
+            <div class="cta-buttons">
+                <a href="#booking" class="btn btn-primary">Book Now</a>
+                <a href="#menu" class="btn btn-secondary">View Menu</a>
+                <a href="#gallery" class="btn btn-secondary">Take a Tour</a>
+            </div>
+        </div>
+        <div class="bus-animation">
+            <div class="bus"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">About Our Royal Journey</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Experience Jaipur like never before aboard our luxury dining bus. Our custom-designed vehicle accommodates 20 guests in premium comfort, featuring a fully equipped kitchen and exquisite decor that captures the essence of Rajasthani royalty.</p>
+                    <p>As you savor our carefully crafted fusion cuisine, watch the Pink City unfold through our panoramic glass walls and roof, creating memories that will last a lifetime.</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>✨ Premium Features</h3>
+                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                        <li>🪵 Handcrafted wooden interiors</li>
+                        <li>💡 Ambient LED lighting system</li>
+                        <li>🔍 250° transparent glass walls & roof</li>
+                        <li>🏰 Heritage-inspired luxury decor</li>
+                        <li>👥 Intimate seating for 20 guests</li>
+                        <li>🍴 On-board gourmet kitchen</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Jaipur on Wheels?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏰</div>
+                    <h3>Iconic Sightseeing</h3>
+                    <p>Tour Jaipur's magnificent palaces, forts, and heritage sites while enjoying your meal</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍽️</div>
+                    <h3>Fusion Cuisine</h3>
+                    <p>Expertly crafted Indian & Continental dishes using fresh, local ingredients</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Curated Experience</h3>
+                    <p>Audio tours, custom playlists, and professional photography services</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👑</div>
+                    <h3>Private Bookings</h3>
+                    <p>Exclusive group experiences for special occasions and corporate events</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Digital Convenience</h3>
+                    <p>Easy online booking with seat selection and menu pre-ordering</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌅</div>
+                    <h3>Themed Experiences</h3>
+                    <p>Sunset dinners, royal nights, and Instagram-worthy moments</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section menu">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--royal-gold);">Our Curated Menu</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">Explore our carefully crafted selection of dishes and beverages</p>
+            <div class="menu-categories">
+                <div class="menu-category" onclick="openMenuModal('starters')">
+                    <h3>🥗 Starters</h3>
+                    <p>Appetizing beginnings to your royal journey</p>
+                </div>
+                <div class="menu-category" onclick="openMenuModal('indian-main')">
+                    <h3>🍛 Indian Main Course</h3>
+                    <p>Traditional flavors with a modern twist</p>
+                </div>
+                <div class="menu-category" onclick="openMenuModal('continental-main')">
+                    <h3>🥘 Continental Main Course</h3>
+                    <p>International cuisine meets local ingredients</p>
+                </div>
+                <div class="menu-category" onclick="openMenuModal('desserts')">
+                    <h3>🍰 Desserts</h3>
+                    <p>Sweet endings to remember</p>
+                </div>
+                <div class="menu-category" onclick="openMenuModal('hot-beverages')">
+                    <h3>☕ Hot Beverages</h3>
+                    <p>Warming drinks for cool evenings</p>
+                </div>
+                <div class="menu-category" onclick="openMenuModal('cold-drinks')">
+                    <h3>🥤 Cold Drinks</h3>
+                    <p>Refreshing mocktails and fresh juices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Modals -->
+    <div id="menuModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMenuModal()">&times;</span>
+            <h2 id="modalTitle">Menu Category</h2>
+            <div id="menuItems" class="menu-items"></div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-primary" onclick="proceedToBooking()">Add to Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Section -->
+    <section id="booking" class="section booking">
+        <div class="container">
+            <h2 class="section-title">Reserve Your Royal Experience</h2>
+            <div class="booking-form">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Contact Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Preferred Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Preferred Time</label>
+                        <select id="time" name="time" required>
+                            <option value="">Select Time Slot</option>
+                            <option value="lunch-12">Lunch - 12:00 PM to 2:30 PM</option>
+                            <option value="afternoon-3">Afternoon - 3:00 PM to 5:30 PM</option>
+                            <option value="sunset-6">Sunset Special - 6:00 PM to 8:30 PM</option>
+                            <option value="dinner-7">Dinner - 7:00 PM to 9:30 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests (Max 20)</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select Guests</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                            <option value="6-10">6-10 Guests</option>
+                            <option value="11-15">11-15 Guests</option>
+                            <option value="16-20">16-20 Guests (Full Bus)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="occasion">Special Occasion (Optional)</label>
+                        <select id="occasion" name="occasion">
+                            <option value="">Select Occasion</option>
+                            <option value="birthday">Birthday Celebration</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="proposal">Marriage Proposal</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="tourist">Tourist Experience</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="requirements">Special Requirements</label>
+                        <textarea id="requirements" name="requirements" rows="4" placeholder="Dietary preferences, accessibility needs, special requests..."></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn btn-primary">Book Now - ₹1599 per person</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">🏰<br>Amber Fort View</div>
+                <div class="gallery-item">🍽️<br>Gourmet Dining</div>
+                <div class="gallery-item">🌅<br>Sunset Experience</div>
+                <div class="gallery-item">🚌<br>Luxury Interior</div>
+                <div class="gallery-item">👑<br>Royal Ambiance</div>
+                <div class="gallery-item">🏮<br>City Palace Tour</div>
+                <div class="gallery-item">🎭<br>Cultural Show</div>
+                <div class="gallery-item">📸<br>Photo Moments</div>
+            </div>
+            
+            <div class="route-map">
+                <h3>Our Royal Route Through Jaipur</h3>
+                <p>A carefully curated journey through the Pink City's most iconic landmarks</p>
+                <div class="route-points">
+                    <div class="route-point">🏰 Amber Fort</div>
+                    <div class="route-point">🏮 City Palace</div>
+                    <div class="route-point">💎 Hawa Mahal</div>
+                    <div class="route-point">🌊 Jal Mahal</div>
+                    <div class="route-point">🏛️ Albert Hall</div>
+                    <div class="route-point">🎯 Nahargarh Fort</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--royal-gold);">Get in Touch</h2>
+            <div class="contact-info">
+                <div class="contact-details">
+                    <h3>Contact Owner</h3>
+                    <p><strong>Sachin</strong></p>
+                    <p>📱 Mobile: <a href="tel:9636575740" style="color: var(--royal-gold);">9636575740</a></p>
+                    <p>📧 Email: info@jaipuronwheels.com</p>
+                    <p>📍 Boarding Location: Heritage Hotel Area, Jaipur</p>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <h3>Business Investment</h3>
+                    <p>Total Project Cost: <strong style="color: var(--royal-gold);">₹19,00,000</strong></p>
+                    <div style="margin-top: 1rem; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        <p>• Bus Purchase: ₹8,00,000</p>
+                        <p>• Interior Design: ₹2,75,000</p>
+                        <p>• Premium Seating (20 guests): ₹2,00,000</p>
+                        <p>• Kitchen Setup: ₹1,00,000</p>
+                        <p>• Lighting & Electricals: ₹1,00,000</p>
+                        <p>• Exterior Branding: ₹1,00,000</p>
+                        <p>• Miscellaneous: ₹3,25,000</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <h3>Future Expansion Plans</h3>
+                    <p>🌟 Udaipur | Jodhpur | Delhi | Agra</p>
+                    <p>🎭 Themed Experiences: Royal Rajasthani, Bollywood Night, Candlelight Cruise</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Jaipur on Wheels. All rights reserved.</p>
+            <p>A Royal Culinary Journey Through the Pink City</p>
+            <p style="margin-top: 1rem;">
+                <span style="color: var(--royal-gold);">Follow us:</span>
+                📱 Instagram | 📘 Facebook | 🐦 Twitter
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu data
+        const menuData = {
+            'starters': {
+                title: '🥗 Starters',
+                items: [
+                    { name: 'Royal Paneer Tikka', description: 'Marinated cottage cheese with royal spices', price: 299, veg: true },
+                    { name: 'Chicken Seekh Kebab', description: 'Tender minced chicken with aromatic herbs', price: 349, veg: false },
+                    { name: 'Aloo Tikki Chaat', description: 'Crispy potato patties with tangy chutneys', price: 199, veg: true },
+                    { name: 'Fish Amritsari', description: 'Golden fried fish with Punjabi flavors', price: 399, veg: false },
+                    { name: 'Vegetable Spring Rolls', description: 'Crispy rolls with fresh vegetables', price: 249, veg: true },
+                    { name: 'Mutton Galouti Kebab', description: 'Melt-in-mouth mutton kebabs', price: 449, veg: false }
+                ]
+            },
+            'indian-main': {
+                title: '🍛 Indian Main Course',
+                items: [
+                    { name: 'Royal Dal Makhani', description: 'Creamy black lentils slow-cooked overnight', price: 299, veg: true },
+                    { name: 'Laal Maas', description: 'Traditional Rajasthani mutton curry', price: 549, veg: false },
+                    { name: 'Paneer Lababdar', description: 'Rich cottage cheese in tomato gravy', price: 349, veg: true },
+                    { name: 'Chicken Tikka Masala', description: 'Grilled chicken in creamy tomato sauce', price: 449, veg: false },
+                    { name: 'Ker Sangri', description: 'Authentic Rajasthani desert vegetable', price: 279, veg: true },
+                    { name: 'Biryani (Veg/Non-Veg)', description: 'Aromatic basmati rice with spices', price: 399, veg: true }
+                ]
+            },
+            'continental-main': {
+                title: '🥘 Continental Main Course',
+                items: [
+                    { name: 'Grilled Chicken Steak', description: 'Juicy chicken breast with herbs', price: 499, veg: false },
+                    { name: 'Pasta Arrabiata', description: 'Spicy tomato pasta with fresh basil', price: 349, veg: true },
+                    { name: 'Fish & Chips', description: 'Beer-battered fish with crispy fries', price: 449, veg: false },
+                    { name: 'Vegetable Lasagna', description: 'Layered pasta with mixed vegetables', price: 399, veg: true },
+                    { name: 'BBQ Pork Ribs', description: 'Tender ribs with smoky barbecue sauce', price: 599, veg: false },
+                    { name: 'Mushroom Risotto', description: 'Creamy rice with wild mushrooms', price: 429, veg: true }
+                ]
+            },
+            'desserts': {
+                title: '🍰 Desserts',
+                items: [
+                    { name: 'Royal Ghevar', description: 'Traditional Rajasthani honeycomb sweet', price: 199, veg: true },
+                    { name: 'Chocolate Lava Cake', description: 'Warm chocolate cake with molten center', price: 249, veg: true },
+                    { name: 'Kulfi Falooda', description: 'Traditional ice cream with vermicelli', price: 179, veg: true },
+                    { name: 'Tiramisu', description: 'Classic Italian coffee-flavored dessert', price: 299, veg: true },
+                    { name: 'Gulab Jamun', description: 'Soft milk dumplings in sugar syrup', price: 149, veg: true },
+                    { name: 'Fresh Fruit Tart', description: 'Seasonal fruits on pastry base', price: 229, veg: true }
+                ]
+            },
+            'hot-beverages': {
+                title: '☕ Hot Beverages',
+                items: [
+                    { name: 'Masala Chai', description: 'Traditional spiced tea', price: 49, veg: true },
+                    { name: 'Cappuccino', description: 'Espresso with steamed milk foam', price: 99, veg: true },
+                    { name: 'Hot Chocolate', description: 'Rich cocoa with whipped cream', price: 129, veg: true },
+                    { name: 'Green Tea', description: 'Antioxidant-rich herbal tea', price: 69, veg: true },
+                    { name: 'Turkish Coffee', description: 'Strong coffee with cardamom', price: 149, veg: true },
+                    { name: 'Kahwa', description: 'Kashmiri tea with almonds and saffron', price: 89, veg: true }
+                ]
+            },
+            'cold-drinks': {
+                title: '🥤 Cold Drinks',
+                items: [
+                    { name: 'Fresh Lime Soda', description: 'Refreshing lime with sparkling water', price: 79, veg: true },
+                    { name: 'Mango Lassi', description: 'Traditional yogurt drink with mango', price: 99, veg: true },
+                    { name: 'Virgin Mojito', description: 'Mint and lime mocktail', price: 129, veg: true },
+                    { name: 'Iced Tea', description: 'Chilled tea with lemon and mint', price: 89, veg: true },
+                    { name: 'Fresh Coconut Water', description: 'Natural coconut water', price: 69, veg: true },
+                    { name: 'Watermelon Juice', description: 'Fresh seasonal fruit juice', price: 89, veg: true }
+                ]
+            }
+        };
+
+        let selectedItems = {};
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        // Intersection Observer for section animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Menu modal functions
+        function openMenuModal(category) {
+            const modal = document.getElementById('menuModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const menuItems = document.getElementById('menuItems');
+            
+            const categoryData = menuData[category];
+            modalTitle.textContent = categoryData.title;
+            
+            menuItems.innerHTML = categoryData.items.map(item => `
+                <div class="menu-item">
+                    <div class="item-info">
+                        <h4>${item.name} ${item.veg ? '🌱' : '🍖'}</h4>
+                        <p>${item.description}</p>
+                    </div>
+                    <div class="item-controls">
+                        <div class="item-price">₹${item.price}</div>
+                        <div class="quantity-control">
+                            <button class="quantity-btn" onclick="changeQuantity('${category}-${item.name}', -1)">-</button>
+                            <span id="${category}-${item.name}-qty">0</span>
+                            <button class="quantity-btn" onclick="changeQuantity('${category}-${item.name}', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            modal.style.display = 'block';
+        }
+
+        function closeMenuModal() {
+            document.getElementById('menuModal').style.display = 'none';
+        }
+
+        function changeQuantity(itemId, change) {
+            const qtyElement = document.getElementById(itemId + '-qty');
+            let currentQty = parseInt(qtyElement.textContent);
+            currentQty = Math.max(0, currentQty + change);
+            qtyElement.textContent = currentQty;
+            
+            if (currentQty > 0) {
+                selectedItems[itemId] = currentQty;
+            } else {
+                delete selectedItems[itemId];
+            }
+        }
+
+        function proceedToBooking() {
+            closeMenuModal();
+            document.getElementById('booking').scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Show selected items summary
+            if (Object.keys(selectedItems).length > 0) {
+                let summary = "Selected items:\n";
+                for (let item in selectedItems) {
+                    summary += `${item}: ${selectedItems[item]} qty\n`;
+                }
+                alert(summary);
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('menuModal');
+            if (event.target === modal) {
+                closeMenuModal();
+            }
+        }
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const bookingData = Object.fromEntries(formData);
+            
+            // Simulate booking process
+            alert('Thank you for your booking! We will contact you shortly to confirm your reservation.\n\nBooking Details:\nName: ' + bookingData.name + '\nPhone: ' + bookingData.phone + '\nDate: ' + bookingData.date + '\nGuests: ' + bookingData.guests);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+    </script>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBQzkIDD0dYUifsNxyOKvvGAO4eu_LqBUw",
+    authDomain: "jaipur-on-wheels.firebaseapp.com",
+    projectId: "jaipur-on-wheels",
+    storageBucket: "jaipur-on-wheels.firebasestorage.app",
+    messagingSenderId: "976934542279",
+    appId: "1:976934542279:web:399ed6e46b5dd0625b17e2",
+    measurementId: "G-5DQ7XS061X"
+  };
+
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  db.collection("visitors").add({
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent,
+    referrer: document.referrer
+  }).then(() => {
+    console.log("Visitor logged to Firebase.");
+  }).catch((error) => {
+    console.error("Error logging visitor:", error);
+  });
+</script>
+
+</body>
+</html>
