@@ -759,10 +759,14 @@ body {
                     <h3>🥗 Starters</h3>
                     <p>Appetizing beginnings to your royal journey</p>
                 </div>
-                <div class="menu-category" onclick="openMenuModal('indian-main')">
-                    <h3>🍛 Indian Main Course</h3>
+                <div class="menu-category" onclick="openMenuModal('italian-main')">
+                    <h3>🍝 Italian Main Course</h3>
                     <p>Traditional flavors with a modern twist</p>
                 </div>
+<div class="menu-category" onclick="openMenuModal('korean-main')">
+    <h3>🍲 Korean Main Course</h3>
+    <p>Bold flavors and sizzling Korean classics</p>
+</div>
                 <div class="menu-category" onclick="openMenuModal('continental-main')">
                     <h3>🥘 Continental Main Course</h3>
                     <p>International cuisine meets local ingredients</p>
@@ -909,20 +913,6 @@ body {
                 </div>
                 
                 <div style="margin-top: 3rem;">
-                    <h3>Business Investment</h3>
-                    <p>Total Project Cost: <strong style="color: var(--royal-gold);">₹19,00,000</strong></p>
-                    <div style="margin-top: 1rem; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        <p>• Bus Purchase: ₹8,00,000</p>
-                        <p>• Interior Design: ₹2,75,000</p>
-                        <p>• Premium Seating (20 guests): ₹2,00,000</p>
-                        <p>• Kitchen Setup: ₹1,00,000</p>
-                        <p>• Lighting & Electricals: ₹1,00,000</p>
-                        <p>• Exterior Branding: ₹1,00,000</p>
-                        <p>• Miscellaneous: ₹3,25,000</p>
-                    </div>
-                </div>
-
-                <div style="margin-top: 3rem;">
                     <h3>Future Expansion Plans</h3>
                     <p>🌟 Udaipur | Jodhpur | Delhi | Agra</p>
                     <p>🎭 Themed Experiences: Royal Rajasthani, Bollywood Night, Candlelight Cruise</p>
@@ -946,39 +936,62 @@ body {
     <script>
         // Menu data
         const menuData = {
-            'starters': {
-                title: '🥗 Starters',
-                items: [
-                    { name: 'Royal Paneer Tikka', description: 'Marinated cottage cheese with royal spices', price: 299, veg: true },
-                    { name: 'Chicken Seekh Kebab', description: 'Tender minced chicken with aromatic herbs', price: 349, veg: false },
-                    { name: 'Aloo Tikki Chaat', description: 'Crispy potato patties with tangy chutneys', price: 199, veg: true },
-                    { name: 'Fish Amritsari', description: 'Golden fried fish with Punjabi flavors', price: 399, veg: false },
-                    { name: 'Vegetable Spring Rolls', description: 'Crispy rolls with fresh vegetables', price: 249, veg: true },
-                    { name: 'Mutton Galouti Kebab', description: 'Melt-in-mouth mutton kebabs', price: 449, veg: false }
-                ]
+    'starters': {
+        title: '🥗 Starters',
+        items: [
+            { name: 'Stuffed Tandoori Mushrooms', description: 'Mushrooms stuffed with cheese & herbs, grilled in tandoor', price: 329, veg: true },
+            { name: 'Royal Paneer Tikka', description: 'Marinated cottage cheese with royal spices', price: 349, veg: true },
+            { name: 'Murgh Malai Tikka', description: 'Creamy chicken chunks marinated in rich malai and spices', price: 399, veg: false },
+            { name: 'Lamb Sheekh Kebab', description: 'Minced lamb skewers cooked to perfection', price: 449, veg: false },
+            { name: 'Tandoori Broccoli', description: 'Broccoli marinated with spiced hung curd and grilled', price: 329, veg: true },
+            { name: 'Butter Garlic Prawns', description: 'Juicy prawns tossed in butter, garlic, and herbs', price: 499, veg: false },
+            { name: 'Cheese Stuffed Paneer Bullets', description: 'Paneer rolls stuffed with cheese & dry fruits', price: 359, veg: true },
+            { name: 'Afghani Chicken', description: 'Succulent chicken pieces in creamy white marinade', price: 399, veg: false },
+            { name: 'Tandoori Soya Chaap', description: 'Flame-grilled soya chaap with rich masala', price: 299, veg: true },
+            { name: 'Fish Tikka', description: 'Chunks of fish marinated in exotic spices and grilled', price: 449, veg: false }
+        ]
             },
-            'indian-main': {
-                title: '🍛 Indian Main Course',
-                items: [
-                    { name: 'Royal Dal Makhani', description: 'Creamy black lentils slow-cooked overnight', price: 299, veg: true },
-                    { name: 'Laal Maas', description: 'Traditional Rajasthani mutton curry', price: 549, veg: false },
-                    { name: 'Paneer Lababdar', description: 'Rich cottage cheese in tomato gravy', price: 349, veg: true },
-                    { name: 'Chicken Tikka Masala', description: 'Grilled chicken in creamy tomato sauce', price: 449, veg: false },
-                    { name: 'Ker Sangri', description: 'Authentic Rajasthani desert vegetable', price: 279, veg: true },
-                    { name: 'Biryani (Veg/Non-Veg)', description: 'Aromatic basmati rice with spices', price: 399, veg: true }
-                ]
+            'italian-main': {
+    title: '🍝 Italian Main Course',
+    items: [
+        { name: 'Penne Alfredo Pasta', description: 'Creamy white sauce pasta with herbs and cheese', price: 349, veg: true },
+        { name: 'Spaghetti Aglio e Olio', description: 'Classic garlic, olive oil, and chili spaghetti', price: 329, veg: true },
+        { name: 'Chicken Lasagna', description: 'Layered pasta with chicken, béchamel, and marinara', price: 449, veg: false },
+        { name: 'Margherita Pizza', description: 'Wood-fired pizza with fresh basil and mozzarella', price: 399, veg: true },
+        { name: 'Grilled Chicken Risotto', description: 'Creamy Arborio rice with grilled chicken', price: 479, veg: false },
+        { name: 'Mushroom Ravioli', description: 'Stuffed pasta in truffle cream sauce', price: 459, veg: true },
+        { name: 'Pesto Pasta with Sun-Dried Tomatoes', description: 'Basil pesto with pasta and sun-dried tomatoes', price: 369, veg: true },
+        { name: 'Spicy Arrabbiata Chicken Pasta', description: 'Penne in spicy red chili tomato sauce with grilled chicken', price: 429, veg: false },
+        { name: 'Four Cheese Pizza', description: 'Mozzarella, parmesan, gorgonzola, and ricotta', price: 449, veg: true },
+        { name: 'Seafood Linguine', description: 'Linguine tossed with prawns, calamari, and white wine sauce', price: 499, veg: false }
+    ]
             },
+'korean-main': {
+    title: '🍲 Korean Main Course',
+    items: [
+        { name: 'Bibimbap', description: 'Rice bowl with sautéed vegetables, gochujang, and fried egg', price: 399, veg: true },
+        { name: 'Bulgogi', description: 'Korean-style marinated grilled beef with sesame and soy', price: 549, veg: false },
+        { name: 'Kimchi Jjigae', description: 'Spicy kimchi stew with tofu and vegetables', price: 379, veg: true },
+        { name: 'Dak Galbi', description: 'Spicy stir-fried chicken with cabbage and rice cakes', price: 449, veg: false },
+        { name: 'Japchae', description: 'Glass noodles with vegetables and sesame-soy sauce', price: 399, veg: true },
+        { name: 'Samgyeopsal', description: 'Grilled pork belly served with dipping sauces and lettuce wraps', price: 579, veg: false }
+    ]
+},
             'continental-main': {
-                title: '🥘 Continental Main Course',
-                items: [
-                    { name: 'Grilled Chicken Steak', description: 'Juicy chicken breast with herbs', price: 499, veg: false },
-                    { name: 'Pasta Arrabiata', description: 'Spicy tomato pasta with fresh basil', price: 349, veg: true },
-                    { name: 'Fish & Chips', description: 'Beer-battered fish with crispy fries', price: 449, veg: false },
-                    { name: 'Vegetable Lasagna', description: 'Layered pasta with mixed vegetables', price: 399, veg: true },
-                    { name: 'BBQ Pork Ribs', description: 'Tender ribs with smoky barbecue sauce', price: 599, veg: false },
-                    { name: 'Mushroom Risotto', description: 'Creamy rice with wild mushrooms', price: 429, veg: true }
-                ]
-            },
+    title: '🥘 Continental Main Course',
+    items: [
+        { name: 'Truffle Mushroom Risotto', description: 'Creamy Arborio rice infused with black truffle oil and wild mushrooms', price: 549, veg: true },
+        { name: 'Stuffed Chicken Roulade', description: 'Free-range chicken breast rolled with spinach and gruyère, drizzled with a Dijon mustard cream', price: 599, veg: false },
+        { name: 'Herb-Crusted Lamb Rack', description: 'French-cut lamb rack with rosemary jus and mashed potatoes', price: 749, veg: false },
+        { name: 'Pan-Seared Sea Bass', description: 'European sea bass on a bed of leek fondue with white wine reduction', price: 689, veg: false },
+        { name: 'Asparagus & Goat Cheese Tart', description: 'Flaky tart with roasted asparagus, creamy goat cheese, and balsamic glaze', price: 459, veg: true },
+        { name: 'Beef Wellington', description: 'Tenderloin wrapped in puff pastry with mushroom duxelles and red wine sauce', price: 799, veg: false },
+        { name: 'Spinach and Ricotta Cannelloni', description: 'Hand-rolled pasta tubes filled with spinach & ricotta, baked in béchamel and tomato coulis', price: 489, veg: true },
+        { name: 'Duck Confit', description: 'Slow-cooked duck leg served with lyonnaise potatoes and orange glaze', price: 729, veg: false },
+        { name: 'Charred Cauliflower Steak', description: 'Thick-cut cauliflower grilled and served with romesco and caper salsa', price: 449, veg: true },
+        { name: 'Lobster Thermidor', description: 'Lobster baked in creamy mustard wine sauce with parmesan crust', price: 899, veg: false }
+    ]
+},
             'desserts': {
                 title: '🍰 Desserts',
                 items: [
